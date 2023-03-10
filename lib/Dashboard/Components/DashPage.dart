@@ -1,11 +1,14 @@
 // ignore_for_file: file_names, prefer_const_constructors, unused_local_variable
 
+import 'package:adminpannel/Posts/Components/Posts.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../DashPage/Categories.dart';
 import '../DashPage/Head.dart';
 import '../DashPage/candidates_table.dart';
+import '../DashPage/positions_table.dart';
+import '../DashPage/userbarchart.dart';
 
 class DashPage extends ConsumerStatefulWidget {
   const DashPage({super.key});
@@ -51,7 +54,12 @@ class _DashPageState extends ConsumerState<DashPage> {
             ),
             ListTile(
               title: const Text('Posts'),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => Posts()));
+              },
             ),
             ListTile(
               title: const Text('Notification'),
@@ -74,10 +82,26 @@ class _DashPageState extends ConsumerState<DashPage> {
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: height * 0.13, child: Head()),
             SizedBox(height: height * 0.28, child: Categories()),
-            SizedBox(height: height, child: InfoTable()),
+            Row(
+              children: [
+                SizedBox(
+                    height: height * 0.7,
+                    width: width * 0.7,
+                    child: InfoTable()),
+                SizedBox(
+                    height: height * 0.75,
+                    width: width * 0.3,
+                    child: UserBarChart()),
+              ],
+            ),
+            SizedBox(
+                height: height * 0.7,
+                width: width * 0.7,
+                child: RecentOpenPositions()),
           ],
         ),
       ),
