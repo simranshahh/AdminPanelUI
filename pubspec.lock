@@ -57,6 +57,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  data_table_2:
+    dependency: "direct main"
+    description:
+      name: data_table_2
+      sha256: daea1a67128e88b6b5537ee0752c67ecdc2fba9cd9303b3554361c648549618d
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.2"
   equatable:
     dependency: transitive
     description:
@@ -115,6 +123,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  form_validators:
+    dependency: "direct main"
+    description:
+      name: form_validators
+      sha256: "80b81b7a8b59cfe9fe8bfe0c660fafdc9a28b5ef04031fa553da1ac9b0039f41"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.0"
   hooks_riverpod:
     dependency: "direct main"
     description:
@@ -123,6 +139,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.0"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      sha256: a3715e3bc90294e971cb7dc063fbf3cd9ee0ebf8604ffeafabd9e6f16abbdbe6
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.18.0"
   js:
     dependency: transitive
     description:
@@ -179,6 +203,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.3"
+  pluto_grid:
+    dependency: "direct main"
+    description:
+      name: pluto_grid
+      sha256: "250da7c2cf5d0224d5cee9f2aa7509bbf8b9c3a73681b8cf31629f297ffd8529"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.0.4"
   riverpod:
     dependency: transitive
     description:
@@ -187,6 +219,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.0"
+  rxdart:
+    dependency: transitive
+    description:
+      name: rxdart
+      sha256: "0c7c0cedd93788d996e33041ffecda924cc54389199cde4e6a34b440f50044cb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.27.7"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -266,4 +306,4 @@ packages:
     version: "2.1.4"
 sdks:
   dart: ">=2.18.4 <3.0.0"
-  flutter: ">=3.0.0"
+  flutter: ">=3.7.0"

@@ -112,7 +112,143 @@ class _HeadState extends ConsumerState<Head> {
                                 style: TextStyle(color: Colors.white),
                               ),
                             ),
-                          Icon(Icons.keyboard_arrow_down),
+                          IconButton(
+                            icon: Icon(
+                              Icons.keyboard_arrow_down,
+                              color: Colors.white,
+                            ),
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    content: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Image.asset(
+                                              'assets/name.png',
+                                              height: 50,
+                                              width: 50,
+                                            ),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text('Name'),
+                                                Text('Simran Sah'),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Image.asset(
+                                              'assets/mail.png',
+                                              height: 50,
+                                              width: 40,
+                                            ),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(' E-Mail'),
+                                                Text(' Sim14@gmail.com'),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Image.asset(
+                                              'assets/lock.png',
+                                              height: 50,
+                                              width: 40,
+                                            ),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text('Old Password'),
+                                                SizedBox(
+                                                  height: height * 0.1,
+                                                  width: width * 0.1,
+                                                  child: TextField(
+                                                    decoration: InputDecoration(
+                                                        border:
+                                                            OutlineInputBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(10),
+                                                        ),
+                                                        labelText:
+                                                            'Old Password'),
+                                                  ),
+                                                )
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Image.asset(
+                                              'assets/lock.png',
+                                              height: 50,
+                                              width: 40,
+                                            ),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text('New Password'),
+                                                SizedBox(
+                                                  height: height * 0.1,
+                                                  width: width * 0.1,
+                                                  child: TextField(
+                                                    decoration: InputDecoration(
+                                                        border:
+                                                            OutlineInputBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(10),
+                                                        ),
+                                                        labelText:
+                                                            'New Password'),
+                                                  ),
+                                                )
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            // Navigator.push(
+                                            //     context,
+                                            // MaterialPageRoute(
+                                            //     builder: (BuildContext context) =>
+                                            //         Serviceman_setting()));
+                                          },
+                                          style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty.all(
+                                                    Colors.deepPurpleAccent),
+                                          ),
+                                          child: Text(
+                                            'Update',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                          ),
                         ],
                       ),
                     ),

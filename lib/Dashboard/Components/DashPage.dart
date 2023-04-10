@@ -4,9 +4,11 @@ import 'package:adminpannel/Posts/Components/Posts.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../Categories/Addcategories.dart';
+import '../Bookings/Bookings.dart';
 import '../DashPage/Categories.dart';
 import '../DashPage/Head.dart';
-import '../DashPage/candidates_table.dart';
+import '../DashPage/recent_candidate.dart';
 import '../DashPage/positions_table.dart';
 import '../DashPage/userbarchart.dart';
 
@@ -33,7 +35,7 @@ class _DashPageState extends ConsumerState<DashPage> {
           children: [
             const DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: Colors.deepPurpleAccent,
                 // image: DecorationImage(
                 //   image: AssetImage(
                 //     "assets/logo.png",
@@ -41,7 +43,13 @@ class _DashPageState extends ConsumerState<DashPage> {
                 //   fit: BoxFit.fill,
                 // ),
               ),
-              child: Text('Saajha '),
+              child: Text(
+                'Saajha Admin Panel',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
+              ),
             ),
             ListTile(
               title: const Text('Dashboard'),
@@ -62,19 +70,29 @@ class _DashPageState extends ConsumerState<DashPage> {
               },
             ),
             ListTile(
-              title: const Text('Notification'),
-              onTap: () {},
+              title: const Text('Categories'),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => AllCategories()));
+              },
             ),
             ListTile(
-              title: const Text('Customer'),
-              onTap: () {},
+              title: const Text('Bookings'),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => BookingPage()));
+              },
             ),
             ListTile(
               title: const Text('Advertisements'),
               onTap: () {},
             ),
             ListTile(
-              title: const Text('Posts'),
+              title: const Text('Providers'),
               onTap: () {},
             ),
           ],
@@ -89,7 +107,7 @@ class _DashPageState extends ConsumerState<DashPage> {
             Row(
               children: [
                 SizedBox(
-                    height: height * 0.7,
+                    height: height * 0.8,
                     width: width * 0.7,
                     child: InfoTable()),
                 SizedBox(
@@ -99,7 +117,7 @@ class _DashPageState extends ConsumerState<DashPage> {
               ],
             ),
             SizedBox(
-                height: height * 0.7,
+                height: height * 0.8,
                 width: width * 0.7,
                 child: RecentOpenPositions()),
           ],

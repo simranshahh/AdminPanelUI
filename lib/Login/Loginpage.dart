@@ -16,6 +16,8 @@ class LoginPage extends ConsumerStatefulWidget {
 class _LoginPageState extends ConsumerState<LoginPage> {
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     final emailctrl = TextEditingController();
     final passwordctrl = TextEditingController();
     return SafeArea(
@@ -23,12 +25,31 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           backgroundColor: Colors.white,
           body: Stack(
             children: [
+              Container(
+                height: height * 0.4,
+                width: width,
+                decoration: BoxDecoration(
+                    color: Colors.deepPurpleAccent,
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(45),
+                        bottomRight: Radius.circular(45))),
+              ),
+              Align(
+                alignment: Alignment.topCenter,
+                child: Image.asset(
+                  'assets/whitelogo.png',
+                  height: 300,
+                  width: 200,
+                ),
+              ),
               Center(
                 child: Card(
                   child: Container(
                     height: 350,
                     width: 300,
-                    color: Colors.white,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(25)),
                     child: Padding(
                       padding: const EdgeInsets.all(25.0),
                       child: Column(
@@ -42,9 +63,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             height: 20,
                           ),
                           TextFormField(
-                            textInputAction: TextInputAction.next,
+                            //  textInputAction: TextInputAction.next,
                             // onSaved: (input) => user!.email = input,
-                            controller: emailctrl,
+                            //  controller: emailctrl,
                             decoration: InputDecoration(
                               prefixIcon: Icon(Icons.mail),
                               border: OutlineInputBorder(

@@ -89,7 +89,7 @@ class _CategoriesState extends ConsumerState<Categories> {
                       children: [
                         Icon(
                           items[index].icon1,
-                          color: Colors.deepPurpleAccent,
+                          color: Colors.white,
                         ),
                         SizedBox(
                           width: 250,
@@ -98,8 +98,51 @@ class _CategoriesState extends ConsumerState<Categories> {
                           items[index].duration,
                           style: TextStyle(color: Colors.white, fontSize: 15),
                         ),
-                        Icon(
-                          items[index].icon2,
+                        IconButton(
+                          icon: Icon(items[index].icon2),
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  // alignment: Alignment.topCenter,
+                                  content: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Image.asset(
+                                        'assets/done.png',
+                                        height: 100,
+                                        width: 100,
+                                      ),
+                                      Text(
+                                          '     Your Profile has been    \n      updated successfully!'),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          // Navigator.push(
+                                          //     context,
+                                          //     MaterialPageRoute(
+                                          //         builder: (BuildContext context) =>
+                                          //             Serviceman_setting()));
+                                        },
+                                        style: ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateProperty.all(
+                                                  Colors.deepPurpleAccent),
+                                        ),
+                                        child: Text(
+                                          'Go to Profile',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                );
+                              },
+                            );
+                          },
                           color: Colors.white,
                         )
                       ],

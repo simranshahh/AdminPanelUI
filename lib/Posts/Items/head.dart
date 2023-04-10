@@ -13,10 +13,10 @@ class PostsHead extends ConsumerStatefulWidget {
 class _PostsHeadState extends ConsumerState<PostsHead> {
   List<HeadPostsModel> items = [
     HeadPostsModel(image: "assets/profilee.png", text: 'Images'),
-    HeadPostsModel(image: "assets/profilee.png", text: 'Documents'),
-    HeadPostsModel(image: "assets/profilee.png", text: 'Video'),
-    HeadPostsModel(image: "assets/profilee.png", text: 'PDF Files'),
-    HeadPostsModel(image: "assets/profilee.png", text: 'Audios'),
+    HeadPostsModel(image: "assets/doc.png", text: 'Documents'),
+    HeadPostsModel(image: "assets/video.png", text: 'Video'),
+    HeadPostsModel(image: "assets/pdf.png", text: 'PDF Files'),
+    HeadPostsModel(image: "assets/audio.png", text: 'Audios'),
   ];
   @override
   Widget build(BuildContext context) {
@@ -33,21 +33,24 @@ class _PostsHeadState extends ConsumerState<PostsHead> {
             width: width * 0.2,
             decoration: BoxDecoration(
               color: Colors.white,
-              gradient: LinearGradient(
-                begin: Alignment.centerRight,
-                end: Alignment.center,
-                colors: [
-                  Color.fromARGB(255, 157, 102, 253),
-                  Color.fromARGB(255, 195, 161, 255)
-                ],
-              ),
+              // gradient: LinearGradient(
+              //   begin: Alignment.centerRight,
+              //   end: Alignment.center,
+              //   colors: [
+              //     Color.fromARGB(255, 157, 102, 253),
+              //     Color.fromARGB(255, 195, 161, 255)
+              //   ],
+              // ),
             ),
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  IconButton(
-                      onPressed: () {}, icon: Icon(Icons.more_vert_outlined)),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 208.0),
+                    child: IconButton(
+                        onPressed: () {}, icon: Icon(Icons.more_vert_outlined)),
+                  ),
                   CircleAvatar(
                     backgroundImage: AssetImage(
                       items[index].image,
