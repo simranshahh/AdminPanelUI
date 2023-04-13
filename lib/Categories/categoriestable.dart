@@ -13,8 +13,8 @@ class AllCategoriesTable extends StatefulWidget {
 class _AllCategoriesTableState extends State<AllCategoriesTable> {
   final List<PlutoColumn> columns = <PlutoColumn>[
     PlutoColumn(
-      title: 'Id',
-      field: 'id',
+      title: 'Booking Id',
+      field: 'Booking Id',
       type: PlutoColumnType.text(),
       frozen: PlutoColumnFrozen.start,
       renderer: (rendererContext) {
@@ -101,7 +101,7 @@ class _AllCategoriesTableState extends State<AllCategoriesTable> {
   final List<PlutoRow> rows = [
     PlutoRow(
       cells: {
-        'id': PlutoCell(value: 'user1'),
+        'Booking Id': PlutoCell(value: 'user1'),
         'name': PlutoCell(value: 'Mike'),
         'age': PlutoCell(value: 20),
         'role': PlutoCell(value: 'Programmer'),
@@ -112,7 +112,7 @@ class _AllCategoriesTableState extends State<AllCategoriesTable> {
     ),
     PlutoRow(
       cells: {
-        'id': PlutoCell(value: 'user2'),
+        'Booking Id': PlutoCell(value: 'user2'),
         'name': PlutoCell(value: 'Jack'),
         'age': PlutoCell(value: 25),
         'role': PlutoCell(value: 'Designer'),
@@ -123,7 +123,7 @@ class _AllCategoriesTableState extends State<AllCategoriesTable> {
     ),
     PlutoRow(
       cells: {
-        'id': PlutoCell(value: 'user3'),
+        'Booking Id': PlutoCell(value: 'user3'),
         'name': PlutoCell(value: 'Suzi'),
         'age': PlutoCell(value: 40),
         'role': PlutoCell(value: 'Owner'),
@@ -136,11 +136,12 @@ class _AllCategoriesTableState extends State<AllCategoriesTable> {
 
   /// columnGroups that can group columns can be omitted.
   final List<PlutoColumnGroup> columnGroups = [
-    PlutoColumnGroup(title: 'Id', fields: ['id'], expandedColumn: true),
+    PlutoColumnGroup(
+        title: 'Booking Id', fields: ['Booking Id'], expandedColumn: true),
     PlutoColumnGroup(title: 'User information', fields: ['name', 'age']),
     PlutoColumnGroup(title: 'Status', children: [
       PlutoColumnGroup(title: 'A', fields: ['role'], expandedColumn: true),
-      PlutoColumnGroup(title: 'Etc.', fields: ['joined', 'working_time']),
+      PlutoColumnGroup(title: 'Visitors.', fields: ['Visit Only', 'Orders']),
     ]),
   ];
 

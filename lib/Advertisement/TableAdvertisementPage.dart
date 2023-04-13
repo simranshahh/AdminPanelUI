@@ -3,18 +3,18 @@
 import 'package:flutter/material.dart';
 import 'package:pluto_grid/pluto_grid.dart';
 
-class AllBookingsTable extends StatefulWidget {
-  const AllBookingsTable({Key? key}) : super(key: key);
+class AdvertisementPageTable extends StatefulWidget {
+  const AdvertisementPageTable({Key? key}) : super(key: key);
 
   @override
-  State<AllBookingsTable> createState() => _AllBookingsTableState();
+  State<AdvertisementPageTable> createState() => _AdvertisementPageTableState();
 }
 
-class _AllBookingsTableState extends State<AllBookingsTable> {
+class _AdvertisementPageTableState extends State<AdvertisementPageTable> {
   final List<PlutoColumn> columns = <PlutoColumn>[
     PlutoColumn(
-      title: 'Booking Id',
-      field: 'Booking Id',
+      title: 'Id',
+      field: 'id',
       type: PlutoColumnType.text(),
       frozen: PlutoColumnFrozen.start,
       renderer: (rendererContext) {
@@ -44,18 +44,18 @@ class _AllBookingsTableState extends State<AllBookingsTable> {
       },
     ),
     PlutoColumn(
-      title: 'Booking Category',
-      field: 'Booking Category',
+      title: 'Name',
+      field: 'name',
       type: PlutoColumnType.text(),
     ),
     PlutoColumn(
-      title: 'Category Type',
-      field: 'Category Type',
-      type: PlutoColumnType.text(),
+      title: 'Age',
+      field: 'age',
+      type: PlutoColumnType.number(),
     ),
     PlutoColumn(
-      title: 'User',
-      field: 'User',
+      title: 'Role',
+      field: 'role',
       type: PlutoColumnType.select(<String>[
         'Programmer',
         'Designer',
@@ -63,19 +63,19 @@ class _AllBookingsTableState extends State<AllBookingsTable> {
       ]),
     ),
     PlutoColumn(
-      title: 'Date',
-      field: 'Date',
+      title: 'Joined',
+      field: 'joined',
       type: PlutoColumnType.date(),
     ),
     PlutoColumn(
-      title: 'Time',
-      field: 'Time',
+      title: 'Working time',
+      field: 'working_time',
       type: PlutoColumnType.time(),
     ),
     PlutoColumn(
-      title: 'Provider',
-      field: 'Provider',
-      type: PlutoColumnType.text(),
+      title: 'salary',
+      field: 'salary',
+      type: PlutoColumnType.currency(),
       footerRenderer: (rendererContext) {
         return PlutoAggregateColumnFooter(
           rendererContext: rendererContext,
@@ -101,48 +101,46 @@ class _AllBookingsTableState extends State<AllBookingsTable> {
   final List<PlutoRow> rows = [
     PlutoRow(
       cells: {
-        'Booking Id': PlutoCell(value: 'user1'),
-        'Booking Category': PlutoCell(value: 'Plumber'),
-        'Category Type': PlutoCell(value: 'Fit washroom taps'),
-        'User': PlutoCell(value: 'Hari'),
-        'Date': PlutoCell(value: '2021-01-01'),
-        'Time': PlutoCell(value: '09:00'),
-        'Provider': PlutoCell(value: 'Manoj'),
+        'id': PlutoCell(value: 'user1'),
+        'name': PlutoCell(value: 'Mike'),
+        'age': PlutoCell(value: 20),
+        'role': PlutoCell(value: 'Programmer'),
+        'joined': PlutoCell(value: '2021-01-01'),
+        'working_time': PlutoCell(value: '09:00'),
+        'salary': PlutoCell(value: 300),
       },
     ),
     PlutoRow(
       cells: {
-        'Booking Id': PlutoCell(value: 'user2'),
-        'Booking Category': PlutoCell(value: 'Carpenter'),
-        'Category Type': PlutoCell(value: 'Mend Chair and Desk'),
-        'User': PlutoCell(value: 'Daya'),
-        'Date': PlutoCell(value: '2021-02-01'),
-        'Time': PlutoCell(value: '10:00'),
-        'Provider': PlutoCell(value: 'sita'),
+        'id': PlutoCell(value: 'user2'),
+        'name': PlutoCell(value: 'Jack'),
+        'age': PlutoCell(value: 25),
+        'role': PlutoCell(value: 'Designer'),
+        'joined': PlutoCell(value: '2021-02-01'),
+        'working_time': PlutoCell(value: '10:00'),
+        'salary': PlutoCell(value: 400),
       },
     ),
     PlutoRow(
       cells: {
-        'Booking Id': PlutoCell(value: 'user3'),
-        'Booking Category': PlutoCell(value: 'Electrician'),
-        'Category Type': PlutoCell(value: 'Fit the bulb Cable'),
-        'User': PlutoCell(value: 'Sana'),
-        'Date': PlutoCell(value: '2021-03-01'),
-        'Time': PlutoCell(value: '11:00'),
-        'Provider': PlutoCell(value: 'Kartik'),
+        'id': PlutoCell(value: 'user3'),
+        'name': PlutoCell(value: 'Suzi'),
+        'age': PlutoCell(value: 40),
+        'role': PlutoCell(value: 'Owner'),
+        'joined': PlutoCell(value: '2021-03-01'),
+        'working_time': PlutoCell(value: '11:00'),
+        'salary': PlutoCell(value: 700),
       },
     ),
   ];
 
   /// columnGroups that can group columns can be omitted.
   final List<PlutoColumnGroup> columnGroups = [
-    PlutoColumnGroup(
-        title: 'Booking Id', fields: ['Booking Id'], expandedColumn: true),
-    PlutoColumnGroup(
-        title: 'Category', fields: ['Booking Category', 'Category Type']),
-    PlutoColumnGroup(title: 'Detail Information', children: [
-      PlutoColumnGroup(title: 'User', fields: ['User'], expandedColumn: true),
-      PlutoColumnGroup(title: 'Order Details.', fields: ['Date', 'Time']),
+    PlutoColumnGroup(title: 'Id', fields: ['id'], expandedColumn: true),
+    PlutoColumnGroup(title: 'User information', fields: ['name', 'age']),
+    PlutoColumnGroup(title: 'Status', children: [
+      PlutoColumnGroup(title: 'A', fields: ['role'], expandedColumn: true),
+      PlutoColumnGroup(title: 'Visitors.', fields: ['Visit Only', 'Orders']),
     ]),
   ];
 

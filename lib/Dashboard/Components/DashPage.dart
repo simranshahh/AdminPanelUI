@@ -4,7 +4,9 @@ import 'package:adminpannel/Posts/Components/Posts.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../Categories/Addcategories.dart';
+import '../../Advertisement/AddAdvertismentpage.dart';
+import '../../Advertisement/AdvertisementPage.dart';
+import '../../Categories/AllCategories.dart';
 import '../Bookings/Bookings.dart';
 import '../DashPage/Categories.dart';
 import '../DashPage/Head.dart';
@@ -37,8 +39,9 @@ class _DashPageState extends ConsumerState<DashPage> {
               decoration: BoxDecoration(
                 color: Colors.deepPurpleAccent,
                 // image: DecorationImage(
+                //   scale: 1.0,
                 //   image: AssetImage(
-                //     "assets/logo.png",
+                //     "assets/whitelogo.png",
                 //   ),
                 //   fit: BoxFit.fill,
                 // ),
@@ -51,15 +54,15 @@ class _DashPageState extends ConsumerState<DashPage> {
                     fontSize: 20),
               ),
             ),
-            ListTile(
-              title: const Text('Dashboard'),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => Head()));
-              },
-            ),
+            // ListTile(
+            //   title: const Text('Dashboard'),
+            //   onTap: () {
+            //     Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //             builder: (BuildContext context) => Head()));
+            //   },
+            // ),
             ListTile(
               title: const Text('Posts'),
               onTap: () {
@@ -89,7 +92,13 @@ class _DashPageState extends ConsumerState<DashPage> {
             ),
             ListTile(
               title: const Text('Advertisements'),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            AdvertisementPage()));
+              },
             ),
             ListTile(
               title: const Text('Providers'),

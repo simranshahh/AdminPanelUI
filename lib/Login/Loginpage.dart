@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, avoid_print, use_build_context_synchronously, sort_child_properties_last, unused_import, file_names
+// ignore_for_file: prefer_const_constructors, avoid_print, use_build_context_synchronously, sort_child_properties_last, unused_import, file_names, unused_local_variable
 
 import 'package:flutter/material.dart';
 
@@ -34,14 +34,14 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         bottomLeft: Radius.circular(45),
                         bottomRight: Radius.circular(45))),
               ),
-              Align(
-                alignment: Alignment.topCenter,
-                child: Image.asset(
-                  'assets/whitelogo.png',
-                  height: 300,
-                  width: 200,
-                ),
-              ),
+              // Align(
+              //   alignment: Alignment.topCenter,
+              //   child: Image.asset(
+              //     'assets/whitelogo.png',
+              //     height: 300,
+              //     width: 200,
+              //   ),
+              // ),
               Center(
                 child: Card(
                   child: Container(

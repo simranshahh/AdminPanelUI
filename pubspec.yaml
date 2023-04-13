@@ -44,6 +44,10 @@ dependencies:
   data_table_2: ^2.4.2
   pluto_grid: ^6.0.4
   form_validators: ^0.3.0
+  web_socket_channel: ^2.4.0
+  image_picker: ^0.8.7+2
+  firebase_storage: ^11.1.0
+  toggle_switch: ^2.0.1
 
 dev_dependencies:
   flutter_test:
