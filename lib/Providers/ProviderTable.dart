@@ -1,20 +1,24 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, file_names
+
+import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pluto_grid/pluto_grid.dart';
 
-class AllCategoriesTable extends StatefulWidget {
-  const AllCategoriesTable({Key? key}) : super(key: key);
+class ProviderTable extends ConsumerStatefulWidget {
+  const ProviderTable({super.key});
 
   @override
-  State<AllCategoriesTable> createState() => _AllCategoriesTableState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _ProviderTableState();
 }
 
-class _AllCategoriesTableState extends State<AllCategoriesTable> {
+class _ProviderTableState extends ConsumerState<ProviderTable> {
   final List<PlutoColumn> columns = <PlutoColumn>[
     PlutoColumn(
-      title: 'Booking Id',
-      field: 'Booking Id',
+      title: ' Id',
+      field: ' Id',
       type: PlutoColumnType.text(),
       frozen: PlutoColumnFrozen.start,
       renderer: (rendererContext) {
@@ -49,8 +53,8 @@ class _AllCategoriesTableState extends State<AllCategoriesTable> {
       type: PlutoColumnType.text(),
     ),
     PlutoColumn(
-      title: 'Age',
-      field: 'age',
+      title: 'E-mail',
+      field: 'E-mail',
       type: PlutoColumnType.number(),
     ),
     PlutoColumn(
@@ -63,8 +67,8 @@ class _AllCategoriesTableState extends State<AllCategoriesTable> {
       ]),
     ),
     PlutoColumn(
-      title: 'Joined',
-      field: 'joined',
+      title: 'Joined Date',
+      field: 'joined Date',
       type: PlutoColumnType.date(),
     ),
     PlutoColumn(
@@ -74,9 +78,20 @@ class _AllCategoriesTableState extends State<AllCategoriesTable> {
     ),
     PlutoColumn(
       // renderer: ,
-      title: 'salary',
-      field: 'salary',
-      type: PlutoColumnType.currency(),
+      title: 'Image',
+      field: 'Image',
+      type: PlutoColumnType.text(),
+      // renderer: (rendererContext) {
+      //   if (rendererContext.cell.value != '') {
+      //     Uint8List bytes =
+      //         (base64Decode(rendererContext.cell.value.toString()));
+      //     return Image.memory(bytes);
+      //   } else {
+      //     return const Text('');
+      //   }
+      // }
+      //    PlutoColumnType.text: (cell) => Image.network(cell.value),,
+
       footerRenderer: (rendererContext) {
         return PlutoAggregateColumnFooter(
           rendererContext: rendererContext,
@@ -102,44 +117,49 @@ class _AllCategoriesTableState extends State<AllCategoriesTable> {
   final List<PlutoRow> rows = [
     PlutoRow(
       cells: {
-        'Booking Id': PlutoCell(value: 'user1'),
+        ' Id': PlutoCell(value: 'user1'),
         'name': PlutoCell(value: 'Mike'),
-        'age': PlutoCell(value: 20),
+        'E-mail': PlutoCell(value: 20),
         'role': PlutoCell(value: 'Programmer'),
-        'joined': PlutoCell(value: '2021-01-01'),
+        'joined Date': PlutoCell(value: '2021-01-01'),
         'working_time': PlutoCell(value: '09:00'),
-        'salary': PlutoCell(value: 300),
+        'Image': PlutoCell(
+            value:
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdzUoWkAdvq-da_c3oJsLYQnLubACACmn-Cw&usqp=CAU'),
       },
     ),
     PlutoRow(
       cells: {
-        'Booking Id': PlutoCell(value: 'user2'),
+        ' Id': PlutoCell(value: 'user2'),
         'name': PlutoCell(value: 'Jack'),
-        'age': PlutoCell(value: 25),
+        'E-mail': PlutoCell(value: 25),
         'role': PlutoCell(value: 'Designer'),
-        'joined': PlutoCell(value: '2021-02-01'),
+        'joined Date': PlutoCell(value: '2021-02-01'),
         'working_time': PlutoCell(value: '10:00'),
-        'salary': PlutoCell(value: 400),
+        'Image': PlutoCell(
+            value:
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdzUoWkAdvq-da_c3oJsLYQnLubACACmn-Cw&usqp=CAU'),
       },
     ),
     PlutoRow(
       cells: {
-        'Booking Id': PlutoCell(value: 'user3'),
+        ' Id': PlutoCell(value: 'user3'),
         'name': PlutoCell(value: 'Suzi'),
-        'age': PlutoCell(value: 40),
+        'E-mail': PlutoCell(value: 40),
         'role': PlutoCell(value: 'Owner'),
-        'joined': PlutoCell(value: '2021-03-01'),
+        'joined Date': PlutoCell(value: '2021-03-01'),
         'working_time': PlutoCell(value: '11:00'),
-        'salary': PlutoCell(value: 700),
+        'Image': PlutoCell(
+            value:
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdzUoWkAdvq-da_c3oJsLYQnLubACACmn-Cw&usqp=CAU'),
       },
     ),
   ];
 
   /// columnGroups that can group columns can be omitted.
   final List<PlutoColumnGroup> columnGroups = [
-    PlutoColumnGroup(
-        title: 'Booking Id', fields: ['Booking Id'], expandedColumn: true),
-    PlutoColumnGroup(title: 'User information', fields: ['name', 'age']),
+    PlutoColumnGroup(title: ' Id', fields: [' Id'], expandedColumn: true),
+    PlutoColumnGroup(title: 'User information', fields: ['name', 'E-mail']),
     PlutoColumnGroup(title: 'Status', children: [
       PlutoColumnGroup(title: 'A', fields: ['role'], expandedColumn: true),
       PlutoColumnGroup(title: 'Visitors.', fields: ['Visit Only', 'Orders']),
@@ -152,22 +172,22 @@ class _AllCategoriesTableState extends State<AllCategoriesTable> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.all(15),
-        child: PlutoGrid(
-          columns: columns,
-          rows: rows,
-          columnGroups: columnGroups,
-          onLoaded: (PlutoGridOnLoadedEvent event) {
-            stateManager = event.stateManager;
-            stateManager.setShowColumnFilter(true);
-          },
-          onChanged: (PlutoGridOnChangedEvent event) {
-            print(event);
-          },
-          configuration: const PlutoGridConfiguration(),
-        ),
+    final height = MediaQuery.of(context).size.height;
+    return Container(
+      height: height,
+      padding: const EdgeInsets.all(15),
+      child: PlutoGrid(
+        columns: columns,
+        rows: rows,
+        columnGroups: columnGroups,
+        onLoaded: (PlutoGridOnLoadedEvent event) {
+          stateManager = event.stateManager;
+          stateManager.setShowColumnFilter(true);
+        },
+        onChanged: (PlutoGridOnChangedEvent event) {
+          print(event);
+        },
+        configuration: const PlutoGridConfiguration(),
       ),
     );
   }

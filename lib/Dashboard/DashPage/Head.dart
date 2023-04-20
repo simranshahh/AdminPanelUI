@@ -21,7 +21,7 @@ class _HeadState extends ConsumerState<Head> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Padding(
-        padding: const EdgeInsets.all(18.0),
+        padding: const EdgeInsets.only(left: 18.0, top: 18),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,8 +41,8 @@ class _HeadState extends ConsumerState<Head> {
                   width: width * 0.25,
                 ),
                 Container(
-                  height: 50,
-                  width: 350,
+                  height: height * 0.07,
+                  width: width * 0.2,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       color: Colors.grey),
@@ -131,8 +131,8 @@ class _HeadState extends ConsumerState<Head> {
                                           children: [
                                             Image.asset(
                                               'assets/name.png',
-                                              height: 50,
-                                              width: 50,
+                                              height: height * .06,
+                                              width: width * 0.06,
                                             ),
                                             Column(
                                               crossAxisAlignment:
@@ -148,8 +148,8 @@ class _HeadState extends ConsumerState<Head> {
                                           children: [
                                             Image.asset(
                                               'assets/mail.png',
-                                              height: 50,
-                                              width: 40,
+                                              height: height * .06,
+                                              width: width * 0.06,
                                             ),
                                             Column(
                                               crossAxisAlignment:
@@ -165,8 +165,8 @@ class _HeadState extends ConsumerState<Head> {
                                           children: [
                                             Image.asset(
                                               'assets/lock.png',
-                                              height: 50,
-                                              width: 40,
+                                              height: height * .06,
+                                              width: width * 0.06,
                                             ),
                                             Column(
                                               crossAxisAlignment:
@@ -196,8 +196,8 @@ class _HeadState extends ConsumerState<Head> {
                                           children: [
                                             Image.asset(
                                               'assets/lock.png',
-                                              height: 50,
-                                              width: 40,
+                                              height: height * .06,
+                                              width: width * 0.06,
                                             ),
                                             Column(
                                               crossAxisAlignment:

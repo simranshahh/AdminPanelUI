@@ -4,9 +4,9 @@ import 'package:adminpannel/Posts/Components/Posts.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../Advertisement/AddAdvertismentpage.dart';
 import '../../Advertisement/AdvertisementPage.dart';
 import '../../Categories/AllCategories.dart';
+import '../../Providers/ProviderPage.dart';
 import '../Bookings/Bookings.dart';
 import '../DashPage/Categories.dart';
 import '../DashPage/Head.dart';
@@ -102,7 +102,12 @@ class _DashPageState extends ConsumerState<DashPage> {
             ),
             ListTile(
               title: const Text('Providers'),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => ProviderPage()));
+              },
             ),
           ],
         ),
@@ -112,7 +117,7 @@ class _DashPageState extends ConsumerState<DashPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: height * 0.13, child: Head()),
-            SizedBox(height: height * 0.28, child: Categories()),
+            SizedBox(height: height * 0.3, child: Categories()),
             Row(
               children: [
                 SizedBox(

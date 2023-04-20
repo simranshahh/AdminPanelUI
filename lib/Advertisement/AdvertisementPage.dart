@@ -25,44 +25,46 @@ class _AdvertisementPageState extends ConsumerState<AdvertisementPage> {
         ),
         body: Padding(
           padding: const EdgeInsets.only(top: 18.0, left: 18),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                'All Advertisements Details',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                height: 40,
-                width: 130,
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStatePropertyAll(Colors.deepOrange)),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                AddAdvertisementPage()));
-                  },
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.add,
-                        color: Colors.white,
-                      ),
-                      Text('Add New'),
-                    ],
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  'All Advertisements Details',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  height: 40,
+                  width: 130,
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStatePropertyAll(Colors.deepOrange)),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  AddAdvertisementPage()));
+                    },
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.add,
+                          color: Colors.white,
+                        ),
+                        Text('Add New'),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: height * 1.0, child: AdvertisementPageTable()),
-            ],
+                SizedBox(height: height * 1.4, child: AdvertisementPageTable()),
+              ],
+            ),
           ),
         ));
   }

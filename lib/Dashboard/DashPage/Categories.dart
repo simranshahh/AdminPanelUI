@@ -92,7 +92,7 @@ class _CategoriesState extends ConsumerState<Categories> {
                           color: Colors.white,
                         ),
                         SizedBox(
-                          width: 250,
+                          width: width * 0.15,
                         ),
                         Text(
                           items[index].duration,
@@ -109,34 +109,7 @@ class _CategoriesState extends ConsumerState<Categories> {
                                   content: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Image.asset(
-                                        'assets/done.png',
-                                        height: 100,
-                                        width: 100,
-                                      ),
-                                      Text(
-                                          '     Your Profile has been    \n      updated successfully!'),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      ElevatedButton(
-                                        onPressed: () {
-                                          // Navigator.push(
-                                          //     context,
-                                          //     MaterialPageRoute(
-                                          //         builder: (BuildContext context) =>
-                                          //             Serviceman_setting()));
-                                        },
-                                        style: ButtonStyle(
-                                          backgroundColor:
-                                              MaterialStateProperty.all(
-                                                  Colors.deepPurpleAccent),
-                                        ),
-                                        child: Text(
-                                          'Go to Profile',
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      )
+                                      // DropdownButton(items: , onChanged: onChanged)
                                     ],
                                   ),
                                 );
