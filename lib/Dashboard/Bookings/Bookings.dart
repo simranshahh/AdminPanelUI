@@ -18,7 +18,7 @@ class _BookingPageState extends ConsumerState<BookingPage> {
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.deepPurpleAccent,
+        backgroundColor: Colors.black,
         title: Text('All Bookings'),
       ),
       body: SingleChildScrollView(

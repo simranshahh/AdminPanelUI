@@ -19,7 +19,7 @@ class _ProviderPageState extends ConsumerState<ProviderPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Providers Page'),
-        backgroundColor: Colors.deepPurpleAccent,
+        backgroundColor: Colors.black,
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 18.0, top: 18),

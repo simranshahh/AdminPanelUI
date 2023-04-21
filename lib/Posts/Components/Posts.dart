@@ -22,55 +22,56 @@ class _PostsState extends ConsumerState<Posts> {
 
     return SafeArea(
       child: Scaffold(
-        body: Stack(children: [
-          Container(
-            height: height * 0.2,
-            width: width,
-            color: Colors.deepPurple,
-            child: Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  IconButton(
-                    icon: Icon(
-                      Icons.arrow_back,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) => DashPage()));
-                    },
-                  ),
-                  Text(
-                    'Posts',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: 25),
-                  )
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(18.0, 85, 18, 0),
-            child: Column(
-              children: [
-                SizedBox(
-                    height: height * 0.2, width: width, child: PostsHead()),
-                Text(
-                  'PAN Documents',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: height * 0.2, width: width, child: PAN()),
-              ],
-            ),
-          )
-        ]),
+        body: Text('posts'),
+        // body: Stack(children: [
+        //   Container(
+        //     height: height * 0.2,
+        //     width: width,
+        //     color: Colors.deepPurple,
+        //     child: Padding(
+        //       padding: const EdgeInsets.all(18.0),
+        //       child: Row(
+        //         crossAxisAlignment: CrossAxisAlignment.start,
+        //         mainAxisAlignment: MainAxisAlignment.start,
+        //         children: [
+        //           IconButton(
+        //             icon: Icon(
+        //               Icons.arrow_back,
+        //               color: Colors.white,
+        //             ),
+        //             onPressed: () {
+        //               Navigator.push(
+        //                   context,
+        //                   MaterialPageRoute(
+        //                       builder: (BuildContext context) => DashPage()));
+        //             },
+        //           ),
+        //           Text(
+        //             'Posts',
+        //             style: TextStyle(
+        //                 fontWeight: FontWeight.bold,
+        //                 color: Colors.white,
+        //                 fontSize: 25),
+        //           )
+        //         ],
+        //       ),
+        //     ),
+        //   ),
+        //   Padding(
+        //     padding: const EdgeInsets.fromLTRB(18.0, 85, 18, 0),
+        //     child: Column(
+        //       children: [
+        //         SizedBox(
+        //             height: height * 0.2, width: width, child: PostsHead()),
+        //         Text(
+        //           'PAN Documents',
+        //           style: TextStyle(fontWeight: FontWeight.bold),
+        //         ),
+        //         SizedBox(height: height * 0.2, width: width, child: PAN()),
+        //       ],
+        //     ),
+        //   )
+        //]
       ),
     );
   }

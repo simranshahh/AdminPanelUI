@@ -28,11 +28,13 @@ class _RecentOpenPositionsState extends ConsumerState<RecentOpenPositions> {
         child: Center(
           child: Theme(
             data: Theme.of(context).copyWith(
-              cardColor: Color.fromARGB(255, 57, 57, 57),
+              // cardColor: Color.fromARGB(255, 57, 57, 57),
               inputDecorationTheme: InputDecorationTheme(
                 border: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.white)),
-                labelStyle: TextStyle(color: Colors.white, fontSize: 24.0),
+                labelStyle: TextStyle(
+                    // color: Colors.white,
+                    fontSize: 24.0),
               ),
               dividerColor: Color.fromARGB(255, 76, 75, 75),
             ),
@@ -40,29 +42,29 @@ class _RecentOpenPositionsState extends ConsumerState<RecentOpenPositions> {
               source: _data,
               header: Text(
                 'Recent Open Positions',
-                style: TextStyle(color: Colors.white),
+                // style: TextStyle(color: Colors.white),
               ),
               columns: const [
                 DataColumn(
                   label: Text(
                     'ID',
-                    style: TextStyle(color: Colors.white),
+                    // style: TextStyle(color: Colors.white),
                   ),
                 ),
                 DataColumn(
                     label: Text(
                   'Position',
-                  style: TextStyle(color: Colors.white),
+                  // style: TextStyle(color: Colors.white),
                 )),
                 DataColumn(
                     label: Text(
                   'Registration_Date',
-                  style: TextStyle(color: Colors.white),
+                  // style: TextStyle(color: Colors.white),
                 )),
                 DataColumn(
                     label: Text(
                   'Status',
-                  style: TextStyle(color: Colors.white),
+                  // style: TextStyle(color: Colors.white),
                 )),
               ],
               columnSpacing: 200,
@@ -100,19 +102,19 @@ class MyData extends DataTableSource {
         cells: [
           DataCell(Text(
             _data[index]['id'].toString(),
-            style: TextStyle(color: Colors.white),
+            // style: TextStyle(color: Colors.white),
           )),
           DataCell(Text(
             _data[index]["price"].toString(),
-            style: TextStyle(color: Colors.white),
+            // style: TextStyle(color: Colors.white),
           )),
           DataCell(Text(
             _data[index]["Registration_Date"].toString(),
-            style: TextStyle(color: Colors.white),
+            // style: TextStyle(color: Colors.white),
           )),
           DataCell(Text(
             _data[index]["Status"].toString(),
-            style: TextStyle(color: Colors.white),
+            // style: TextStyle(color: Colors.white),
           )),
         ]);
   }

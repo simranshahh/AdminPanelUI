@@ -29,89 +29,90 @@ class _DashPageState extends ConsumerState<DashPage> {
 
     return Scaffold(
       appBar: AppBar(
+        title: Text('Dashboard'),
         backgroundColor: Color.fromARGB(255, 50, 50, 50),
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.deepPurpleAccent,
-                // image: DecorationImage(
-                //   scale: 1.0,
-                //   image: AssetImage(
-                //     "assets/whitelogo.png",
-                //   ),
-                //   fit: BoxFit.fill,
-                // ),
-              ),
-              child: Text(
-                'Saajha Admin Panel',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20),
-              ),
-            ),
-            // ListTile(
-            //   title: const Text('Dashboard'),
-            //   onTap: () {
-            //     Navigator.push(
-            //         context,
-            //         MaterialPageRoute(
-            //             builder: (BuildContext context) => Head()));
-            //   },
-            // ),
-            ListTile(
-              title: const Text('Posts'),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => Posts()));
-              },
-            ),
-            ListTile(
-              title: const Text('Categories'),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => AllCategories()));
-              },
-            ),
-            ListTile(
-              title: const Text('Bookings'),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => BookingPage()));
-              },
-            ),
-            ListTile(
-              title: const Text('Advertisements'),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            AdvertisementPage()));
-              },
-            ),
-            ListTile(
-              title: const Text('Providers'),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => ProviderPage()));
-              },
-            ),
-          ],
-        ),
-      ),
+      // drawer: Drawer(
+      //   child: ListView(
+      //     padding: EdgeInsets.zero,
+      //     children: [
+      //       const DrawerHeader(
+      //         decoration: BoxDecoration(
+      //           color: Colors.deepPurpleAccent,
+      //           // image: DecorationImage(
+      //           //   scale: 1.0,
+      //           //   image: AssetImage(
+      //           //     "assets/whitelogo.png",
+      //           //   ),
+      //           //   fit: BoxFit.fill,
+      //           // ),
+      //         ),
+      //         child: Text(
+      //           'Saajha Admin Panel',
+      //           style: TextStyle(
+      //               color: Colors.white,
+      //               fontWeight: FontWeight.bold,
+      //               fontSize: 20),
+      //         ),
+      //       ),
+      //       // ListTile(
+      //       //   title: const Text('Dashboard'),
+      //       //   onTap: () {
+      //       //     Navigator.push(
+      //       //         context,
+      //       //         MaterialPageRoute(
+      //       //             builder: (BuildContext context) => Head()));
+      //       //   },
+      //       // ),
+      //       ListTile(
+      //         title: const Text('Posts'),
+      //         onTap: () {
+      //           Navigator.push(
+      //               context,
+      //               MaterialPageRoute(
+      //                   builder: (BuildContext context) => Posts()));
+      //         },
+      //       ),
+      //       ListTile(
+      //         title: const Text('Categories'),
+      //         onTap: () {
+      //           Navigator.push(
+      //               context,
+      //               MaterialPageRoute(
+      //                   builder: (BuildContext context) => AllCategories()));
+      //         },
+      //       ),
+      //       ListTile(
+      //         title: const Text('Bookings'),
+      //         onTap: () {
+      //           Navigator.push(
+      //               context,
+      //               MaterialPageRoute(
+      //                   builder: (BuildContext context) => BookingPage()));
+      //         },
+      //       ),
+      //       ListTile(
+      //         title: const Text('Advertisements'),
+      //         onTap: () {
+      //           Navigator.push(
+      //               context,
+      //               MaterialPageRoute(
+      //                   builder: (BuildContext context) =>
+      //                       AdvertisementPage()));
+      //         },
+      //       ),
+      //       ListTile(
+      //         title: const Text('Providers'),
+      //         onTap: () {
+      //           Navigator.push(
+      //               context,
+      //               MaterialPageRoute(
+      //                   builder: (BuildContext context) => ProviderPage()));
+      //         },
+      //       ),
+      //     ],
+      //   ),
+      // ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -126,7 +127,7 @@ class _DashPageState extends ConsumerState<DashPage> {
                     child: InfoTable()),
                 SizedBox(
                     height: height * 0.75,
-                    width: width * 0.3,
+                    width: width * 0.17,
                     child: UserBarChart()),
               ],
             ),

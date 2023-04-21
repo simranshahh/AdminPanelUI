@@ -63,7 +63,7 @@ class _CategoriesState extends ConsumerState<Categories> {
     final width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: secondaryColor,
+      // backgroundColor: secondaryColor,
       resizeToAvoidBottomInset: false,
       body: SizedBox(
         height: height * 0.3,
@@ -76,7 +76,7 @@ class _CategoriesState extends ConsumerState<Categories> {
               height: height * 0.25,
               width: width * 0.27,
               decoration: BoxDecoration(
-                  color: secondaryColor,
+                  // color: secondaryColor,
                   border: Border.all(color: Colors.grey),
                   borderRadius: BorderRadius.circular(5)),
               child: Padding(
@@ -89,14 +89,16 @@ class _CategoriesState extends ConsumerState<Categories> {
                       children: [
                         Icon(
                           items[index].icon1,
-                          color: Colors.white,
+                          // color: Colors.white,
                         ),
                         SizedBox(
                           width: width * 0.15,
                         ),
                         Text(
                           items[index].duration,
-                          style: TextStyle(color: Colors.white, fontSize: 15),
+                          style: TextStyle(
+                              // color: Colors.white,
+                              fontSize: 15),
                         ),
                         IconButton(
                           icon: Icon(items[index].icon2),
@@ -116,7 +118,7 @@ class _CategoriesState extends ConsumerState<Categories> {
                               },
                             );
                           },
-                          color: Colors.white,
+                          // color: Colors.white,
                         )
                       ],
                     ),
@@ -125,7 +127,9 @@ class _CategoriesState extends ConsumerState<Categories> {
                     ),
                     Text(
                       items[index].maintext,
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                      style: TextStyle(
+                          // color: Colors.white,
+                          fontSize: 20),
                     ),
                     LinearPercentIndicator(
                       width: 200.0,
@@ -142,7 +146,6 @@ class _CategoriesState extends ConsumerState<Categories> {
                     ),
                     Text(
                       items[index].number,
-                      style: TextStyle(color: Colors.white),
                     )
                   ],
                 ),

@@ -13,13 +13,15 @@ class PageCategories extends ConsumerStatefulWidget {
 class _PageCategoriesState extends ConsumerState<PageCategories> {
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
-            height: 50,
-            width: 200,
+            height: height * 0.06,
+            width: width * 0.12,
             color: Colors.black,
             child: Center(
                 child: Text(
@@ -31,8 +33,8 @@ class _PageCategoriesState extends ConsumerState<PageCategories> {
             )),
           ),
           Container(
-            height: 50,
-            width: 200,
+            height: height * 0.06,
+            width: width * 0.12,
             color: Colors.black,
             child: Center(
                 child: Text(
@@ -44,8 +46,8 @@ class _PageCategoriesState extends ConsumerState<PageCategories> {
             )),
           ),
           Container(
-            height: 50,
-            width: 200,
+            height: height * 0.06,
+            width: width * 0.12,
             color: Colors.black,
             child: Center(
                 child: Text(
@@ -57,8 +59,8 @@ class _PageCategoriesState extends ConsumerState<PageCategories> {
             )),
           ),
           Container(
-            height: 50,
-            width: 200,
+            height: height * 0.06,
+            width: width * 0.12,
             color: Colors.black,
             child: Center(
                 child: Text(

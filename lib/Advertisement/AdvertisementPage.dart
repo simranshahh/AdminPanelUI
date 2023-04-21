@@ -20,7 +20,7 @@ class _AdvertisementPageState extends ConsumerState<AdvertisementPage> {
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.deepPurpleAccent,
+          backgroundColor: Colors.black,
           title: Text('Advertisements Page'),
         ),
         body: Padding(

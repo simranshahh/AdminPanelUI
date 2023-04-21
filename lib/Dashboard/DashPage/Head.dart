@@ -19,7 +19,7 @@ class _HeadState extends ConsumerState<Head> {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.black,
+      // backgroundColor: Colors.black,
       body: Padding(
         padding: const EdgeInsets.only(left: 18.0, top: 18),
         child: Column(
@@ -33,9 +33,10 @@ class _HeadState extends ConsumerState<Head> {
                 Text(
                   'Hello Simran',
                   style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25,
-                      color: Colors.white),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                    // color: Colors.white
+                  ),
                 ),
                 SizedBox(
                   width: width * 0.25,

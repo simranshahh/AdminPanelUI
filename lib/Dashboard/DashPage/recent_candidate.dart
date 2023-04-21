@@ -26,7 +26,7 @@ class _InfoTableState extends ConsumerState<InfoTable> {
       body: Center(
         child: Theme(
           data: Theme.of(context).copyWith(
-            cardColor: Color.fromARGB(255, 57, 57, 57),
+            // cardColor: Color.fromARGB(255, 57, 57, 57),
             inputDecorationTheme: InputDecorationTheme(
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.white)),
@@ -38,45 +38,45 @@ class _InfoTableState extends ConsumerState<InfoTable> {
             source: _data,
             header: Text(
               'Recent Candidates',
-              style: TextStyle(color: Colors.white),
+              // style: TextStyle(color: Colors.white),
             ),
             columns: const [
               DataColumn(
                 label: Text(
                   'ID',
-                  style: TextStyle(color: Colors.white),
+                  // style: TextStyle(color: Colors.white),
                 ),
               ),
               DataColumn(
                 label: Text(
                   'Name',
-                  style: TextStyle(color: Colors.white),
+                  // style: TextStyle(color: Colors.white),
                 ),
               ),
               DataColumn(
                   label: Text(
                 'Position',
-                style: TextStyle(color: Colors.white),
+                // style: TextStyle(color: Colors.white),
               )),
               DataColumn(
                   label: Text(
                 'PAN_No.',
-                style: TextStyle(color: Colors.white),
+                // style: TextStyle(color: Colors.white),
               )),
               DataColumn(
                   label: Text(
                 'Email',
-                style: TextStyle(color: Colors.white),
+                // style: TextStyle(color: Colors.white),
               )),
               DataColumn(
                   label: Text(
                 'Registration_Date',
-                style: TextStyle(color: Colors.white),
+                // style: TextStyle(color: Colors.white),
               )),
               DataColumn(
                   label: Text(
                 'Status',
-                style: TextStyle(color: Colors.white),
+                // style: TextStyle(color: Colors.white),
               )),
             ],
             columnSpacing: 90,
@@ -116,31 +116,31 @@ class MyData extends DataTableSource {
         cells: [
           DataCell(Text(
             _data[index]['id'].toString(),
-            style: TextStyle(color: Colors.white),
+            // style: TextStyle(color: Colors.white),
           )),
           DataCell(Text(
             _data[index]["title"],
-            style: TextStyle(color: Colors.white),
+            // style: TextStyle(color: Colors.white),
           )),
           DataCell(Text(
             _data[index]["price"].toString(),
-            style: TextStyle(color: Colors.white),
+            // style: TextStyle(color: Colors.white),
           )),
           DataCell(Text(
             _data[index]["PAN_No"].toString(),
-            style: TextStyle(color: Colors.white),
+            // style: TextStyle(color: Colors.white),
           )),
           DataCell(Text(
             _data[index]["Email"].toString(),
-            style: TextStyle(color: Colors.white),
+            // style: TextStyle(color: Colors.white),
           )),
           DataCell(Text(
             _data[index]["Registration_Date"].toString(),
-            style: TextStyle(color: Colors.white),
+            // style: TextStyle(color: Colors.white),
           )),
           DataCell(Text(
             _data[index]["Status"].toString(),
-            style: TextStyle(color: Colors.white),
+            // style: TextStyle(color: Colors.white),
           )),
         ]);
   }

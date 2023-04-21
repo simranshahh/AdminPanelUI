@@ -4,6 +4,7 @@ import 'package:adminpannel/Dashboard/Components/DashPage.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'Aasidebar/Navbar.dart';
 import 'Dashboard/Bookings/Components/tables.dart';
 import 'Dashboard/Bookings/postcategories.dart';
 import 'Login/Loginpage.dart';
@@ -26,6 +27,6 @@ class MyApp extends StatelessWidget {
 
     // ignore: prefer_const_constructors
     return MaterialApp(
-        debugShowCheckedModeBanner: false, home: ProviderDetailPage());
+        debugShowCheckedModeBanner: false, home: CustomNavigation());
   }
 }
