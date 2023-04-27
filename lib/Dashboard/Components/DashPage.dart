@@ -122,7 +122,7 @@ class _DashPageState extends ConsumerState<DashPage> {
             Row(
               children: [
                 SizedBox(
-                    height: height * 0.8,
+                    height: height * 0.82,
                     width: width * 0.7,
                     child: InfoTable()),
                 SizedBox(
@@ -132,7 +132,7 @@ class _DashPageState extends ConsumerState<DashPage> {
               ],
             ),
             SizedBox(
-                height: height * 0.8,
+                height: height * 0.82,
                 width: width * 0.7,
                 child: RecentOpenPositions()),
           ],

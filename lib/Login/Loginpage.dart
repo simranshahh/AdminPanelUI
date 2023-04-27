@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../Aasidebar/Navbar.dart';
 import '../Dashboard/Components/DashPage.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
@@ -104,7 +105,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                               // if (user != null) {
                               Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
-                                      builder: (context) => DashPage()));
+                                      builder: (context) =>
+                                          CustomNavigation()));
                             },
                             child: Text('Login'),
                             style: ButtonStyle(

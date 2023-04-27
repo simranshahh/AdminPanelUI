@@ -48,6 +48,8 @@ dependencies:
   image_picker: ^0.8.7+2
   firebase_storage: ^11.1.0
   toggle_switch: ^2.0.1
+  dio: ^5.1.1
+  nb_utils: ^5.0.8
 
 dev_dependencies:
   flutter_test:

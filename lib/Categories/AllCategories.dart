@@ -21,7 +21,7 @@ class _AllCategoriesState extends ConsumerState<AllCategories> {
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.deepPurpleAccent,
+          backgroundColor: Colors.black,
           title: Text('AllCategories'),
         ),
         body: Padding(
