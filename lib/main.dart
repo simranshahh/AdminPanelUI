@@ -12,8 +12,8 @@ import 'Posts/Components/Posts.dart';
 import 'Posts/Items/AddTable.dart';
 import 'Posts/Items/Advertisement.dart';
 import 'Posts/Items/head.dart';
-import 'Providers/ProviderDetail.dart';
-import 'Providers/ProviderPage.dart';
+import 'common/riverpod/Providers/ProviderDetail.dart';
+import 'common/riverpod/Providers/ProviderPage.dart';
 
 void main() {
   runApp(ProviderScope(child: const MyApp()));
@@ -27,6 +27,6 @@ class MyApp extends StatelessWidget {
     // ignore: prefer_const_constructors
 
     // ignore: prefer_const_constructors
-    return MaterialApp(debugShowCheckedModeBanner: false, home: ProviderPage());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: LoginPage());
   }
 }

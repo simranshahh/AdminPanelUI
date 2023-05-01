@@ -6,7 +6,7 @@ import '../Advertisement/AdvertisementPage.dart';
 import '../Categories/AllCategories.dart';
 import '../Dashboard/Bookings/Bookings.dart';
 import '../Dashboard/Components/DashPage.dart';
-import '../Providers/ProviderPage.dart';
+import '../common/riverpod/Providers/ProviderPage.dart';
 
 class CustomNavigation<T> extends StatefulWidget {
   CustomNavigation({

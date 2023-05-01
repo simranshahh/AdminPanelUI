@@ -6,7 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../Advertisement/AdvertisementPage.dart';
 import '../../Categories/AllCategories.dart';
-import '../../Providers/ProviderPage.dart';
+import '../../common/riverpod/Providers/ProviderPage.dart';
 import '../Bookings/Bookings.dart';
 import '../DashPage/Categories.dart';
 import '../DashPage/Head.dart';

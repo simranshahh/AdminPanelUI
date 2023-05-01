@@ -50,6 +50,7 @@ dependencies:
   toggle_switch: ^2.0.1
   dio: ^5.1.1
   nb_utils: ^5.0.8
+  flutter_switch: ^0.3.2
 
 dev_dependencies:
   flutter_test:

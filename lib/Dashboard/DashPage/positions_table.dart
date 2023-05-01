@@ -1,10 +1,14 @@
 // ignore_for_file: prefer_const_constructors, unused_local_variable
 
-import 'dart:math';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../common/Services/basedio.dart';
+import '../../common/config/my_config.dart';
+import '../../common/riverpod/models/AllrolesModel.dart';
 import '../../constants/color_constants.dart';
 
 class RecentOpenPositions extends ConsumerStatefulWidget {
@@ -16,7 +20,35 @@ class RecentOpenPositions extends ConsumerStatefulWidget {
 }
 
 class _RecentOpenPositionsState extends ConsumerState<RecentOpenPositions> {
-  final DataTableSource _data = MyData();
+  List<Roles> data = [];
+  allRoles() async {
+    try {
+      var response = await Api().get(MyConfig.allroles);
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        // Map<String, dynamic> responsedata = json.decode(response.data);
+        // print(responsedata);
+        // List<dynamic> data = responsedata["roles"];
+        // return data.map((e) => Roles.fromJson(e)).toList();
+        List<dynamic> jsonResponse = json.decode(response.data)["roles"];
+        print(jsonResponse);
+        setState(() {
+          data = jsonResponse.map((data) => Roles.fromJson(data)).toList();
+        });
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+    List<Roles> b = [];
+    return b;
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    allRoles();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +71,7 @@ class _RecentOpenPositionsState extends ConsumerState<RecentOpenPositions> {
               dividerColor: Color.fromARGB(255, 76, 75, 75),
             ),
             child: PaginatedDataTable(
-              source: _data,
+              source: MyData(data, setState),
               header: Text(
                 'Recent Open Positions',
                 // style: TextStyle(color: Colors.white),
@@ -56,16 +88,17 @@ class _RecentOpenPositionsState extends ConsumerState<RecentOpenPositions> {
                   'Position',
                   // style: TextStyle(color: Colors.white),
                 )),
-                DataColumn(
-                    label: Text(
-                  'Registration_Date',
-                  // style: TextStyle(color: Colors.white),
-                )),
+                // DataColumn(
+                //     label: Text(
+                //   'Registration_Date',
+                //   // style: TextStyle(color: Colors.white),
+                // )),
                 DataColumn(
                     label: Text(
                   'Status',
                   // style: TextStyle(color: Colors.white),
                 )),
+                DataColumn(label: Text('Delete')),
               ],
               columnSpacing: 200,
               horizontalMargin: 60,
@@ -79,43 +112,89 @@ class _RecentOpenPositionsState extends ConsumerState<RecentOpenPositions> {
 }
 
 class MyData extends DataTableSource {
-  // Generate some made-up data
-  final List<Map<String, dynamic>> _data = List.generate(
-      150,
-      (index) => {
-            "id": index,
-            "price": Random().nextInt(35000),
-            "Registration_Date": Random().nextInt(35000),
-            "Status": Random().nextInt(35000),
-          });
+  final List<Roles> data;
+  final Function _setState;
+  MyData(this.data, this._setState);
+
+  // // Generate some made-up data
+  // final List<Map<String, dynamic>> _data = List.generate(
+  //     150,
+  //     (index) => {
+  //           "id": index,
+  //           "position": Random().nextInt(35000),
+  //           // "Registration_Date": Random().nextInt(35000),
+  //           "Status": Random().nextInt(35000),
+  //         });
+  void delete(int index) {
+    data.removeAt(index);
+    notifyListeners();
+  }
+
+  // bool status = false;
+  final ValueNotifier<bool> _buttonState = ValueNotifier<bool>(false);
 
   @override
   bool get isRowCountApproximate => false;
   @override
-  int get rowCount => _data.length;
+  int get rowCount => data.length;
   @override
   int get selectedRowCount => 0;
   @override
   DataRow getRow(int index) {
-    return DataRow(
-        // color: MaterialStateColor.resolveWith((states) => Colors.blue),
-        cells: [
-          DataCell(Text(
-            _data[index]['id'].toString(),
-            // style: TextStyle(color: Colors.white),
-          )),
-          DataCell(Text(
-            _data[index]["price"].toString(),
-            // style: TextStyle(color: Colors.white),
-          )),
-          DataCell(Text(
-            _data[index]["Registration_Date"].toString(),
-            // style: TextStyle(color: Colors.white),
-          )),
-          DataCell(Text(
-            _data[index]["Status"].toString(),
-            // style: TextStyle(color: Colors.white),
-          )),
-        ]);
+    final Roles result = data[index];
+    return DataRow.byIndex(index: index, cells: <DataCell>[
+      DataCell(Text('${index + 1}')),
+      DataCell(Text(result.name.toString())),
+      DataCell(
+        ValueListenableBuilder(
+          valueListenable: _buttonState,
+          builder: (context, bool value, child) {
+            return ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: value == true ? Colors.green : Colors.red,
+                    shape: StadiumBorder() // Background color
+                    ),
+                child: Text(value ? 'On' : 'Off'),
+                onPressed: () {
+                  _buttonState.value = !_buttonState.value;
+                  print(_buttonState.value);
+                });
+          },
+        ),
+        // FlutterSwitch(
+        //   value: status,
+        //   onToggle: (val) {
+        //     _setState(() {
+        //       status = val;
+        //       print(status);
+        //     });
+        //   },
+        // ),
+        // FlutterSwitch(
+        //   height: 20.0,
+        //   width: 40.0,
+        //   padding: 4.0,
+        //   toggleSize: 15.0,
+        //   borderRadius: 10.0,
+        //   activeColor: Colors.green,
+        //   value: status,
+        //   onToggle: (value) {
+        //     _setState(() {
+        //       status = value;
+        //       print(status);
+        //     });
+        //   },
+        // ),
+      ),
+      DataCell(
+        IconButton(
+          icon: Icon(
+            Icons.delete,
+            color: Colors.red,
+          ),
+          onPressed: () => delete(index),
+        ),
+      )
+    ]);
   }
 }

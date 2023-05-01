@@ -15,12 +15,45 @@ class LoginPage extends ConsumerStatefulWidget {
 }
 
 class _LoginPageState extends ConsumerState<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
+  String _email = 'simransah314@gmail.com';
+  String _password = 'S@imi12345';
+
+  void _submit() {
+    if (_formKey.currentState!.validate()) {
+      if (_email == 'simransah314@gmail.com' && _password == 'S@imi12345') {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) => CustomNavigation()));
+      } else {
+        showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+            title: Text('Login Failed'),
+            content: Text('Incorrect email or password'),
+            actions: [
+              ElevatedButton(
+                child: Text('OK'),
+                onPressed: () => CustomNavigation(),
+              ),
+            ],
+          ),
+        );
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final emailCtrl = TextEditingController(text: _email);
+    final passwordCtrl = TextEditingController(text: _password);
+    // _email = 'simransah314@gmail.com';
+    // _password = 'S@imi12345';
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    final emailctrl = TextEditingController();
-    final passwordctrl = TextEditingController();
+    // final emailctrl = TextEditingController();
+    // final passwordctrl = TextEditingController();
     return SafeArea(
       child: Scaffold(
           backgroundColor: Colors.white,
@@ -53,69 +86,85 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         borderRadius: BorderRadius.circular(25)),
                     child: Padding(
                       padding: const EdgeInsets.all(25.0),
-                      child: Column(
-                        children: [
-                          Text(
-                            'Login Page',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 18),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          TextFormField(
-                            //  textInputAction: TextInputAction.next,
-                            // onSaved: (input) => user!.email = input,
-                            //  controller: emailctrl,
-                            decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.mail),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(15)),
-                              labelText: 'Email',
+                      child: Form(
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            Text(
+                              'Login Page',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 18),
                             ),
-                            // validator: FormBuilderValidators.compose(
-                            //     [FormBuilderValidators.required()]),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          TextFormField(
-                            textInputAction: TextInputAction.next,
-                            // onSaved: (input) => user!.email = input,
-                            controller: passwordctrl,
-                            decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.mail),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(15)),
-                              labelText: 'Password',
+                            SizedBox(
+                              height: 20,
                             ),
-                            // validator: FormBuilderValidators.compose(
-                            //     [FormBuilderValidators.required()]),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          ElevatedButton(
-                            onPressed: () {
-                              // User? user = await loginUsingEmailPassword(
-                              //     email: emailctrl.text,
-                              //     password: passwordctrl.text,
-                              //     context: context);
-                              // print(user);
-                              // if (user != null) {
-                              Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          CustomNavigation()));
-                            },
-                            child: Text('Login'),
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                Colors.deepPurpleAccent,
+                            TextFormField(
+                              //  textInputAction: TextInputAction.next,
+                              onSaved: (value) => _email = value!,
+
+                              //  controller: emailctrl,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(Icons.mail),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15)),
+                                labelText: 'Email',
                               ),
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Please enter your email';
+                                }
+                                return null;
+                              },
                             ),
-                          )
-                        ],
+                            SizedBox(
+                              height: 20,
+                            ),
+                            TextFormField(
+                              textInputAction: TextInputAction.next,
+                              onSaved: (value) => _password = value!,
+                              // controller: passwordctrl,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(Icons.mail),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15)),
+                                labelText: 'Password',
+                              ),
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Please enter your password';
+                                }
+                                return null;
+                              },
+                              // validator: FormBuilderValidators.compose(
+                              //     [FormBuilderValidators.required()]),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                // _submit;
+                                // print('a');
+                                // // User? user = await loginUsingEmailPassword(
+                                // //     email: emailctrl.text,
+                                // //     password: passwordctrl.text,
+                                // //     context: context);
+                                // // print(user);
+                                // // if (user != null) {
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            CustomNavigation()));
+                              },
+                              child: Text('Login'),
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                  Colors.deepPurpleAccent,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),

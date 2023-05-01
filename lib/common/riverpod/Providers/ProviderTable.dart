@@ -1,15 +1,14 @@
 // ignore_for_file: avoid_print, file_names
 
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pluto_grid/pluto_grid.dart';
 
-import '../common/Services/basedio.dart';
-import '../common/config/my_config.dart';
-import '../common/riverpod/models/customerprofile.dart';
+import '../../Services/basedio.dart';
+import '../../config/my_config.dart';
+import '../models/customerprofile.dart';
 
 class ProviderTable extends ConsumerStatefulWidget {
   const ProviderTable({super.key});
