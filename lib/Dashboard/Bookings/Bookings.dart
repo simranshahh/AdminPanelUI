@@ -26,7 +26,7 @@ class _BookingPageState extends ConsumerState<BookingPage> {
           padding: const EdgeInsets.only(top: 20.0),
           child: Column(
             children: [
-              SizedBox(height: height * 0.1, child: PageCategories()),
+              // SizedBox(height: height * 0.1, child: PageCategories()),
               SizedBox(height: height * 1.0, child: AllBookingsTable()),
             ],
           ),

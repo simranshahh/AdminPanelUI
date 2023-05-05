@@ -130,6 +130,10 @@ class MyData extends DataTableSource {
     notifyListeners();
   }
 
+  void state(int index){
+   
+  }
+
   // bool status = false;
   final ValueNotifier<bool> _buttonState = ValueNotifier<bool>(false);
 
@@ -161,30 +165,7 @@ class MyData extends DataTableSource {
                 });
           },
         ),
-        // FlutterSwitch(
-        //   value: status,
-        //   onToggle: (val) {
-        //     _setState(() {
-        //       status = val;
-        //       print(status);
-        //     });
-        //   },
-        // ),
-        // FlutterSwitch(
-        //   height: 20.0,
-        //   width: 40.0,
-        //   padding: 4.0,
-        //   toggleSize: 15.0,
-        //   borderRadius: 10.0,
-        //   activeColor: Colors.green,
-        //   value: status,
-        //   onToggle: (value) {
-        //     _setState(() {
-        //       status = value;
-        //       print(status);
-        //     });
-        //   },
-        // ),
+     
       ),
       DataCell(
         IconButton(

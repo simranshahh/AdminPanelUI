@@ -6,6 +6,9 @@ class MyConfig {
   static const String signin = "/api/auth/login";
   static const String cusinfo = "/api/auth/getuser";
   static const String allroles = "/api/roles/all";
+  static const String allcustomer = "/api/admin/all-customers";
+  static const String allbookings = "/api/admin/all-bookings";
+  static const String allserviceprovider = "/api/admin/all-service-provider";
 
   /// Dont change the code below
   MyConfig._();

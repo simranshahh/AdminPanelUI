@@ -2,13 +2,15 @@
 
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pluto_grid/pluto_grid.dart';
 
+import '../../../constants/color_constants.dart';
 import '../../Services/basedio.dart';
 import '../../config/my_config.dart';
-import '../models/customerprofile.dart';
+import '../models/AllServiceProvider_model.dart';
 
 class ProviderTable extends ConsumerStatefulWidget {
   const ProviderTable({super.key});
@@ -18,386 +20,141 @@ class ProviderTable extends ConsumerStatefulWidget {
 }
 
 class _ProviderTableState extends ConsumerState<ProviderTable> {
-  // final List<PlutoColumn> columns = <PlutoColumn>[
-  //   PlutoColumn(
-  //     title: ' Id',
-  //     field: ' Id',
-  //     type: PlutoColumnType.text(),
-  //     frozen: PlutoColumnFrozen.start,
-  //     renderer: (rendererContext) {
-  //       return Row(
-  //         children: [
-  //           IconButton(
-  //             icon: const Icon(
-  //               Icons.remove_circle_outlined,
-  //             ),
-  //             onPressed: () {
-  //               rendererContext.stateManager.removeRows([rendererContext.row]);
-  //             },
-  //             iconSize: 18,
-  //             color: Colors.red,
-  //             padding: const EdgeInsets.all(0),
-  //           ),
-  //           Expanded(
-  //             child: Text(
-  //               rendererContext.row.cells[rendererContext.column.field]!.value
-  //                   .toString(),
-  //               maxLines: 1,
-  //               overflow: TextOverflow.ellipsis,
-  //             ),
-  //           ),
-  //         ],
-  //       );
-  //     },
-  //   ),
-  //   PlutoColumn(
-  //     title: 'Name',
-  //     field: 'name',
-  //     type: PlutoColumnType.text(),
-  //   ),
-  //   PlutoColumn(
-  //     title: 'E-mail',
-  //     field: 'E-mail',
-  //     type: PlutoColumnType.number(),
-  //   ),
-  //   PlutoColumn(
-  //     title: 'Role',
-  //     field: 'role',
-  //     type: PlutoColumnType.select(<String>[
-  //       'Programmer',
-  //       'Designer',
-  //       'Owner',
-  //     ]),
-  //   ),
-  //   PlutoColumn(
-  //     title: 'Joined Date',
-  //     field: 'joined Date',
-  //     type: PlutoColumnType.date(),
-  //   ),
-  //   PlutoColumn(
-  //     title: 'Working time',
-  //     field: 'working_time',
-  //     type: PlutoColumnType.time(),
-  //   ),
-  //   PlutoColumn(
-  //     // renderer: ,
-  //     title: 'Image',
-  //     field: 'Image',
-  //     type: PlutoColumnType.text(),
-  //     // renderer: (rendererContext) {
-  //     //   if (rendererContext.cell.value != '') {
-  //     //     Uint8List bytes =
-  //     //         (base64Decode(rendererContext.cell.value.toString()));
-  //     //     return Image.memory(bytes);
-  //     //   } else {
-  //     //     return const Text('');
-  //     //   }
-  //     // }
-  //     //    PlutoColumnType.text: (cell) => Image.network(cell.value),,
+  List<SProvider> data = [];
+  allSProvider() async {
+    try {
+      var response = await Api().get(MyConfig.allserviceprovider);
 
-  //     footerRenderer: (rendererContext) {
-  //       return PlutoAggregateColumnFooter(
-  //         rendererContext: rendererContext,
-  //         formatAsCurrency: true,
-  //         type: PlutoAggregateColumnType.sum,
-  //         format: '#,###',
-  //         alignment: Alignment.center,
-  //         titleSpanBuilder: (text) {
-  //           return [
-  //             const TextSpan(
-  //               text: 'Sum',
-  //               style: TextStyle(color: Colors.red),
-  //             ),
-  //             const TextSpan(text: ' : '),
-  //             TextSpan(text: text),
-  //           ];
-  //         },
-  //       );
-  //     },
-  //   ),
-  // ];
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        List<dynamic> jsonResponse = json.decode(response.data)["providers"];
 
-  // final List<PlutoRow> rows = [
-  //   PlutoRow(
-  //     cells: {
-  //       ' Id': PlutoCell(value: 'user1'),
-  //       'name': PlutoCell(value: 'Mike'),
-  //       'E-mail': PlutoCell(value: 20),
-  //       'role': PlutoCell(value: 'Programmer'),
-  //       'joined Date': PlutoCell(value: '2021-01-01'),
-  //       'working_time': PlutoCell(value: '09:00'),
-  //       'Image': PlutoCell(
-  //           value:
-  //               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdzUoWkAdvq-da_c3oJsLYQnLubACACmn-Cw&usqp=CAU'),
-  //     },
-  //   ),
-  //   PlutoRow(
-  //     cells: {
-  //       ' Id': PlutoCell(value: 'user2'),
-  //       'name': PlutoCell(value: 'Jack'),
-  //       'E-mail': PlutoCell(value: 25),
-  //       'role': PlutoCell(value: 'Designer'),
-  //       'joined Date': PlutoCell(value: '2021-02-01'),
-  //       'working_time': PlutoCell(value: '10:00'),
-  //       'Image': PlutoCell(
-  //           value:
-  //               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdzUoWkAdvq-da_c3oJsLYQnLubACACmn-Cw&usqp=CAU'),
-  //     },
-  //   ),
-  //   PlutoRow(
-  //     cells: {
-  //       ' Id': PlutoCell(value: 'user3'),
-  //       'name': PlutoCell(value: 'Suzi'),
-  //       'E-mail': PlutoCell(value: 40),
-  //       'role': PlutoCell(value: 'Owner'),
-  //       'joined Date': PlutoCell(value: '2021-03-01'),
-  //       'working_time': PlutoCell(value: '11:00'),
-  //       'Image': PlutoCell(
-  //           value:
-  //               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdzUoWkAdvq-da_c3oJsLYQnLubACACmn-Cw&usqp=CAU'),
-  //     },
-  //   ),
-  // ];
-
-  // /// columnGroups that can group columns can be omitted.
-  // final List<PlutoColumnGroup> columnGroups = [
-  //   PlutoColumnGroup(title: ' Id', fields: [' Id'], expandedColumn: true),
-  //   PlutoColumnGroup(title: 'User information', fields: ['name', 'E-mail']),
-  //   PlutoColumnGroup(title: 'Status', children: [
-  //     PlutoColumnGroup(title: 'A', fields: ['role'], expandedColumn: true),
-  //     PlutoColumnGroup(title: 'Visitors.', fields: ['Visit Only', 'Orders']),
-  //   ]),
-  // ];
-
-  /// [PlutoGridStateManager] has many methods and properties to dynamically manipulate the grid.
-  /// You can manipulate the grid dynamically at runtime by passing this through the [onLoaded] callback.
-  late final PlutoGridStateManager stateManager;
-  bool apiValue = false;
-  Color? getCellColor(String field) {
-    if (field == 'column1' && apiValue == false) {
-      return Colors.red;
+        setState(() {
+          data = jsonResponse.map((e) => SProvider.fromJson(e)).toList();
+        });
+      }
+    } catch (e) {
+      print(e.toString());
     }
-    return null;
+    List<SProvider> b = [];
+    return b;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    allSProvider();
   }
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    return SizedBox(
-      height: height * 0.55,
-      child: FutureBuilder(
-        future: customerinfo(),
-        builder: (ctx, snapshot) {
-          if (snapshot.hasData) {
-            CInfo? data = snapshot.data;
-            return PlutoGrid(
-              columns: [
-                PlutoColumn(
-                  title: 'Id',
-                  field: 'Id',
-                  type: PlutoColumnType.text(),
-                  frozen: PlutoColumnFrozen.start,
-                  renderer: (rendererContext) {
-                    return Row(
-                      children: [
-                        IconButton(
-                          icon: const Icon(
-                            Icons.remove_circle_outlined,
-                          ),
-                          onPressed: () {
-                            rendererContext.stateManager
-                                .removeRows([rendererContext.row]);
-                          },
-                          iconSize: 18,
-                          color: Colors.red,
-                          padding: const EdgeInsets.all(0),
-                        ),
-                        Expanded(
-                          child: Text(
-                            rendererContext
-                                .row.cells[rendererContext.column.field]!.value
-                                .toString(),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                ),
-                PlutoColumn(
-                  title: 'Name',
-                  field: 'name',
-                  type: PlutoColumnType.text(),
-                ),
-                PlutoColumn(
-                  title: 'E-mail',
-                  field: 'E-mail',
-                  type: PlutoColumnType.text(),
-                ),
-                PlutoColumn(
-                  title: 'Role',
-                  field: 'role',
-                  type: PlutoColumnType.text(),
-                  //   <
-                  // String>[
-                  //   'Programmer',
-                  //   'Designer',
-                  //   'Owner',
-                  // ]),
-                ),
-                PlutoColumn(
-                  title: 'Joined Date',
-                  field: 'joined Date',
-                  type: PlutoColumnType.text(),
-                ),
-                // PlutoColumn(
-                //   title: 'Working time',
-                //   field: 'working_time',
-                //   type: PlutoColumnType.time(),
-                // ),
-                PlutoColumn(
-                  title: 'Image',
-                  field: 'Image',
-                  type: PlutoColumnType.text(),
-                  footerRenderer: (rendererContext) {
-                    return PlutoAggregateColumnFooter(
-                      rendererContext: rendererContext,
-                      formatAsCurrency: true,
-                      type: PlutoAggregateColumnType.sum,
-                      format: '#,###',
-                      alignment: Alignment.center,
-                      titleSpanBuilder: (text) {
-                        return [
-                          const TextSpan(
-                            text: 'Sum',
-                            style: TextStyle(color: Colors.red),
-                          ),
-                          const TextSpan(text: ' : '),
-                          TextSpan(text: text),
-                        ];
-                      },
-                    );
-                  },
-                ),
-                PlutoColumn(
-                  title: 'Approved',
-                  field: 'approved',
-                  type: PlutoColumnType.text(),
-                  frozen: PlutoColumnFrozen.end,
-                  renderer: (rendererContext) {
-                    return Row(
-                      children: [
-                        IconButton(
-                          icon: const Icon(
-                            Icons.task_alt,
-                          ),
-                          onPressed: () {
-                            // rendererContext.stateManager
-                            //     .([rendererContext.row]);
-                          },
-                          iconSize: 18,
-                          color: data!.verified == false
-                              ? Colors.red
-                              : Colors.green,
-                          padding: const EdgeInsets.all(0),
-                        ),
-                        Expanded(
-                          child: Text(
-                            rendererContext
-                                .row.cells[rendererContext.column.field]!.value
-                                .toString(),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              color: data.verified == false
-                                  ? Colors.red
-                                  : Colors.green,
-                            ),
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                ),
-              ],
-              rows: [
-                PlutoRow(
-                  cells: {
-                    'Id': PlutoCell(value: data!.id.toString()),
-                    'name': PlutoCell(value: data.fullName.toString()),
-                    'E-mail': PlutoCell(value: data.email.toString()),
-                    'role': PlutoCell(value: data.role!.name),
-                    'joined Date': PlutoCell(value: data.cordinates.toString()),
-                    'Image': PlutoCell(value: data.picture.toString()),
-                    'approved': PlutoCell(value: data.verified.toString()),
-                  },
-                ),
-              ],
-              onLoaded: (PlutoGridOnLoadedEvent event) {
-                event.stateManager.setShowColumnFilter(true);
-              },
-              onChanged: (PlutoGridOnChangedEvent event) {
-                print(event);
-              },
-              configuration: const PlutoGridConfiguration(),
-            );
-          } else if (snapshot.hasError) {
-            return Text(snapshot.hasError.toString());
-          }
-          // By default, show a loading spinner.
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const <Widget>[
-                CircularProgressIndicator(),
-                SizedBox(height: 20),
-                Text('This may take some time..')
-              ],
+    final width = MediaQuery.of(context).size.width;
+    return Scaffold(
+      backgroundColor: secondaryColor,
+      body: Center(
+        child: Theme(
+          data: Theme.of(context).copyWith(
+            inputDecorationTheme: const InputDecorationTheme(
+              border: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white)),
+              labelStyle: TextStyle(color: Colors.white, fontSize: 24.0),
             ),
-          );
-        },
+            dividerColor: const Color.fromARGB(255, 76, 75, 75),
+          ),
+          child: PaginatedDataTable(
+            source: MyData(data),
+            header: const Text(
+              'Service Providers',
+            ),
+            columns: const [
+              DataColumn(
+                label: Text(
+                  'ID',
+                ),
+              ),
+              DataColumn(
+                label: Text(
+                  'Name',
+                ),
+              ),
+              DataColumn(
+                  label: Text(
+                'Email',
+              )),
+              DataColumn(
+                  label: Text(
+                'Address',
+              )),
+              DataColumn(
+                  label: Text(
+                'Role',
+              )),
+              DataColumn(
+                  label: Text(
+                'Price',
+              )),
+              DataColumn(
+                  label: Text(
+                'Phone',
+              )),
+              DataColumn(
+                  label: Text(
+                'Status',
+              )),
+            ],
+            columnSpacing: 90,
+            horizontalMargin: 60,
+            rowsPerPage: 8,
+          ),
+        ),
       ),
     );
   }
+}
 
-  Future<CInfo?> customerinfo() async {
-    try {
-      var response = await Api().get(MyConfig.cusinfo);
+class MyData extends DataTableSource {
+  final List<SProvider> data;
+  MyData(this.data);
+  // final ValueNotifier<bool> _buttonState = ValueNotifier<bool>(false);
 
-      var a = json.decode(response.toString());
-      print(response.statusCode);
-      if (response.statusCode == 200) {
-        var responsedata = json.decode(response.data)["user"];
-        print(responsedata);
-        //  await setString(userId, a['email']["password"].toString());
-        print(response.data);
-        var data = CInfo.fromJson(responsedata);
-        return data;
-        // AppNavigatorService.pushNamedAndRemoveUntil("Signin");
-      }
-    } catch (e) {
-      print(e.toString());
-    }
-    return null;
+  @override
+  bool get isRowCountApproximate => false;
+  @override
+  int get rowCount => data.length;
+  @override
+  int get selectedRowCount => 0;
+  @override
+  DataRow getRow(int index) {
+    final SProvider result = data[index];
+    final ValueNotifier<bool> buttonState =
+        ValueNotifier<bool>(result.verified!);
+
+    return DataRow.byIndex(index: index, cells: <DataCell>[
+      DataCell(Text('${index + 1}')),
+      DataCell(Text(result.fullName.toString())),
+      DataCell(Text(result.email.toString())),
+      DataCell(Text(result.address.toString())),
+      DataCell(Text(result.role.toString())),
+      DataCell(Text(result.price.toString())),
+      DataCell(Text(result.phone.toString())),
+      DataCell(
+        ValueListenableBuilder(
+          valueListenable: buttonState,
+          builder: (context, bool value, child) {
+            return ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: value == true ? Colors.green : Colors.red,
+                    shape: const StadiumBorder() // Background color
+                    ),
+                child: Text(value == false ? 'Verify' : 'Approved'),
+                onPressed: () {
+                  buttonState.value = !buttonState.value;
+                  print(buttonState.value);
+                });
+          },
+        ),
+      )
+    ]);
   }
 }
-//     Container(
-//       height: height,
-//       padding: const EdgeInsets.all(15),
-//       child: PlutoGrid(
-//         columns: columns,
-//         rows: rows,
-//         columnGroups: columnGroups,
-//         onLoaded: (PlutoGridOnLoadedEvent event) {
-//           stateManager = event.stateManager;
-//           stateManager.setShowColumnFilter(true);
-//         },
-//         onChanged: (PlutoGridOnChangedEvent event) {
-//           print(event);
-//         },
-//         configuration: const PlutoGridConfiguration(),
-//       ),
-//     );
-//   }
-// }

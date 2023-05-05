@@ -1,10 +1,15 @@
 // ignore_for_file: prefer_const_constructors, unused_local_variable
 
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../common/Services/basedio.dart';
+import '../../common/config/my_config.dart';
+import '../../common/riverpod/models/AllCustomer_model.dart';
+import '../../common/riverpod/repository/AdminRepository.dart';
 import '../../constants/color_constants.dart';
 
 class InfoTable extends ConsumerStatefulWidget {
@@ -15,7 +20,30 @@ class InfoTable extends ConsumerStatefulWidget {
 }
 
 class _InfoTableState extends ConsumerState<InfoTable> {
-  final DataTableSource _data = MyData();
+  List<Customer> data = [];
+  allcustomer() async {
+    try {
+      var response = await Api().get(MyConfig.allcustomer);
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        List<dynamic> jsonResponse = json.decode(response.data)["customers"];
+
+        setState(() {
+          data = jsonResponse.map((e) => Customer.fromJson(e)).toList();
+        });
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+    List<Customer> b = [];
+    return b;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    allcustomer();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +54,6 @@ class _InfoTableState extends ConsumerState<InfoTable> {
       body: Center(
         child: Theme(
           data: Theme.of(context).copyWith(
-            // cardColor: Color.fromARGB(255, 57, 57, 57),
             inputDecorationTheme: InputDecorationTheme(
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.white)),
@@ -35,48 +62,32 @@ class _InfoTableState extends ConsumerState<InfoTable> {
             dividerColor: Color.fromARGB(255, 76, 75, 75),
           ),
           child: PaginatedDataTable(
-            source: _data,
+            source: MyData(data),
             header: Text(
               'Recent Candidates',
-              // style: TextStyle(color: Colors.white),
             ),
             columns: const [
               DataColumn(
                 label: Text(
                   'ID',
-                  // style: TextStyle(color: Colors.white),
                 ),
               ),
               DataColumn(
                 label: Text(
                   'Name',
-                  // style: TextStyle(color: Colors.white),
                 ),
               ),
               DataColumn(
                   label: Text(
-                'Position',
-                // style: TextStyle(color: Colors.white),
-              )),
-              DataColumn(
-                  label: Text(
-                'PAN_No.',
-                // style: TextStyle(color: Colors.white),
-              )),
-              DataColumn(
-                  label: Text(
                 'Email',
-                // style: TextStyle(color: Colors.white),
               )),
               DataColumn(
                   label: Text(
-                'Registration_Date',
-                // style: TextStyle(color: Colors.white),
+                'Address',
               )),
               DataColumn(
                   label: Text(
-                'Status',
-                // style: TextStyle(color: Colors.white),
+                'Phone',
               )),
             ],
             columnSpacing: 90,
@@ -90,58 +101,25 @@ class _InfoTableState extends ConsumerState<InfoTable> {
 }
 
 class MyData extends DataTableSource {
-  // Generate some made-up data
-  final List<Map<String, dynamic>> _data = List.generate(
-      150,
-      (index) => {
-            "id": index,
-            "title": "Item $index",
-            "price": Random().nextInt(35000),
-            "PAN_No": Random().nextInt(35000),
-            "Email": Random().nextInt(35000),
-            "Registration_Date": Random().nextInt(35000),
-            "Status": Random().nextInt(35000),
-          });
+  final List<Customer> data;
+  MyData(this.data);
 
   @override
   bool get isRowCountApproximate => false;
   @override
-  int get rowCount => _data.length;
+  int get rowCount => data.length;
   @override
   int get selectedRowCount => 0;
   @override
   DataRow getRow(int index) {
-    return DataRow(
-        // color: MaterialStateColor.resolveWith((states) => Colors.blue),
-        cells: [
-          DataCell(Text(
-            _data[index]['id'].toString(),
-            // style: TextStyle(color: Colors.white),
-          )),
-          DataCell(Text(
-            _data[index]["title"],
-            // style: TextStyle(color: Colors.white),
-          )),
-          DataCell(Text(
-            _data[index]["price"].toString(),
-            // style: TextStyle(color: Colors.white),
-          )),
-          DataCell(Text(
-            _data[index]["PAN_No"].toString(),
-            // style: TextStyle(color: Colors.white),
-          )),
-          DataCell(Text(
-            _data[index]["Email"].toString(),
-            // style: TextStyle(color: Colors.white),
-          )),
-          DataCell(Text(
-            _data[index]["Registration_Date"].toString(),
-            // style: TextStyle(color: Colors.white),
-          )),
-          DataCell(Text(
-            _data[index]["Status"].toString(),
-            // style: TextStyle(color: Colors.white),
-          )),
-        ]);
+    final Customer result = data[index];
+
+    return DataRow.byIndex(index: index, cells: <DataCell>[
+      DataCell(Text('${index + 1}')),
+      DataCell(Text(result.fullName.toString())),
+      DataCell(Text(result.email.toString())),
+      DataCell(Text(result.address.toString())),
+      DataCell(Text(result.phone.toString())),
+    ]);
   }
 }
