@@ -2,10 +2,12 @@
 
 import 'dart:convert';
 
+import 'package:adminpannel/common/helper/constants.dart';
+import 'package:adminpannel/common/riverpod/Providers/verifyprovider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:pluto_grid/pluto_grid.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 import '../../../constants/color_constants.dart';
 import '../../Services/basedio.dart';
@@ -46,10 +48,20 @@ class _ProviderTableState extends ConsumerState<ProviderTable> {
     allSProvider();
   }
 
+  final _verifyKey = GlobalKey<FormState>();
+  // String id = getStringAsync(pId);
+  // String i = '';
+  // Future<void> verify(String i) async {
+  //   // if (_verifyKey.currentState!.validate()) {
+  //   ref.read(verifyNotifierProvider.notifier).Verify(i, context);
+  //   // }
+  // }
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: secondaryColor,
       body: Center(
@@ -62,50 +74,57 @@ class _ProviderTableState extends ConsumerState<ProviderTable> {
             ),
             dividerColor: const Color.fromARGB(255, 76, 75, 75),
           ),
-          child: PaginatedDataTable(
-            source: MyData(data),
-            header: const Text(
-              'Service Providers',
+          child: Form(
+            key: _verifyKey,
+            child: PaginatedDataTable(
+              source: MyData(
+                  data,
+                  ((id) => ref
+                      .read(verifyNotifierProvider.notifier)
+                      .Verify(id, context))),
+              header: const Text(
+                'Service Providers',
+              ),
+              columns: const [
+                DataColumn(
+                  label: Text(
+                    'ID',
+                  ),
+                ),
+                DataColumn(
+                  label: Text(
+                    'Name',
+                  ),
+                ),
+                DataColumn(
+                    label: Text(
+                  'Email',
+                )),
+                DataColumn(
+                    label: Text(
+                  'Address',
+                )),
+                DataColumn(
+                    label: Text(
+                  'Role',
+                )),
+                DataColumn(
+                    label: Text(
+                  'Price',
+                )),
+                DataColumn(
+                    label: Text(
+                  'Phone',
+                )),
+                DataColumn(
+                    label: Text(
+                  'Status',
+                )),
+              ],
+              columnSpacing: 90,
+              horizontalMargin: 60,
+              rowsPerPage: 8,
             ),
-            columns: const [
-              DataColumn(
-                label: Text(
-                  'ID',
-                ),
-              ),
-              DataColumn(
-                label: Text(
-                  'Name',
-                ),
-              ),
-              DataColumn(
-                  label: Text(
-                'Email',
-              )),
-              DataColumn(
-                  label: Text(
-                'Address',
-              )),
-              DataColumn(
-                  label: Text(
-                'Role',
-              )),
-              DataColumn(
-                  label: Text(
-                'Price',
-              )),
-              DataColumn(
-                  label: Text(
-                'Phone',
-              )),
-              DataColumn(
-                  label: Text(
-                'Status',
-              )),
-            ],
-            columnSpacing: 90,
-            horizontalMargin: 60,
-            rowsPerPage: 8,
           ),
         ),
       ),
@@ -115,7 +134,9 @@ class _ProviderTableState extends ConsumerState<ProviderTable> {
 
 class MyData extends DataTableSource {
   final List<SProvider> data;
-  MyData(this.data);
+  final Function(String id) myfunction;
+  MyData(this.data, this.myfunction);
+
   // final ValueNotifier<bool> _buttonState = ValueNotifier<bool>(false);
 
   @override
@@ -129,6 +150,13 @@ class MyData extends DataTableSource {
     final SProvider result = data[index];
     final ValueNotifier<bool> buttonState =
         ValueNotifier<bool>(result.verified!);
+    String idvalue;
+    // String i = '';
+    // Future<void> verify() async {
+    //   // if (_verifyKey.currentState!.validate()) {
+    //   ref.read(verifyNotifierProvider.notifier).Verify(i, context);
+    //   // }
+    // }
 
     return DataRow.byIndex(index: index, cells: <DataCell>[
       DataCell(Text('${index + 1}')),
@@ -150,6 +178,14 @@ class MyData extends DataTableSource {
                 child: Text(value == false ? 'Verify' : 'Approved'),
                 onPressed: () {
                   buttonState.value = !buttonState.value;
+                  idvalue = result.id!;
+                  // setValue(pId, idvalue);
+                  // print(pId);
+                  print(idvalue);
+                  print(result.id);
+                  myfunction(idvalue);
+                  print(myfunction);
+
                   print(buttonState.value);
                 });
           },

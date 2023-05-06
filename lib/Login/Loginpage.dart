@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, avoid_print, use_build_context_synchronously, sort_child_properties_last, unused_import, file_names, unused_local_variable
+// ignore_for_file: prefer_const_constructors, avoid_print, use_build_context_synchronously, sort_child_properties_last, unused_import, file_names, unused_local_variable, unrelated_type_equality_checks
 
 import 'package:flutter/material.dart';
 
@@ -16,12 +16,14 @@ class LoginPage extends ConsumerStatefulWidget {
 
 class _LoginPageState extends ConsumerState<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-  String _email = 'simransah314@gmail.com';
-  String _password = 'S@imi12345';
-
+  final String _email = 'simransah314@gmail.com';
+  final String _password = 'S@imi12345';
+  final emailCtrl = TextEditingController();
+  final passwordCtrl = TextEditingController();
   void _submit() {
     if (_formKey.currentState!.validate()) {
-      if (_email == 'simransah314@gmail.com' && _password == 'S@imi12345') {
+      if (emailCtrl.value.text == _email &&
+          passwordCtrl.value.text == _password) {
         Navigator.push(
             context,
             MaterialPageRoute(
@@ -35,7 +37,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
             actions: [
               ElevatedButton(
                 child: Text('OK'),
-                onPressed: () => CustomNavigation(),
+                onPressed: () => Navigator.pop(context),
               ),
             ],
           ),
@@ -46,8 +48,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final emailCtrl = TextEditingController(text: _email);
-    final passwordCtrl = TextEditingController(text: _password);
     // _email = 'simransah314@gmail.com';
     // _password = 'S@imi12345';
     final height = MediaQuery.of(context).size.height;
@@ -100,9 +100,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             ),
                             TextFormField(
                               //  textInputAction: TextInputAction.next,
-                              onSaved: (value) => _email = value!,
+                              // onSaved: (value) => _email = value!,
 
-                              //  controller: emailctrl,
+                              controller: emailCtrl,
                               decoration: InputDecoration(
                                 prefixIcon: Icon(Icons.mail),
                                 border: OutlineInputBorder(
@@ -121,8 +121,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             ),
                             TextFormField(
                               textInputAction: TextInputAction.next,
-                              onSaved: (value) => _password = value!,
-                              // controller: passwordctrl,
+                              // onSaved: (value) => _password = value!,
+                              controller: passwordCtrl,
                               decoration: InputDecoration(
                                 prefixIcon: Icon(Icons.mail),
                                 border: OutlineInputBorder(
@@ -143,6 +143,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             ),
                             ElevatedButton(
                               onPressed: () {
+                                _submit();
                                 // _submit;
                                 // print('a');
                                 // // User? user = await loginUsingEmailPassword(
@@ -151,10 +152,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                 // //     context: context);
                                 // // print(user);
                                 // // if (user != null) {
-                                Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            CustomNavigation()));
+                                // Navigator.of(context).pushReplacement(
+                                //     MaterialPageRoute(
+                                //         builder: (context) =>
+                                //             CustomNavigation()));
                               },
                               child: Text('Login'),
                               style: ButtonStyle(

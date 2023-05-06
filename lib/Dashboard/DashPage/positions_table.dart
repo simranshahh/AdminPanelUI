@@ -71,6 +71,7 @@ class _RecentOpenPositionsState extends ConsumerState<RecentOpenPositions> {
               dividerColor: Color.fromARGB(255, 76, 75, 75),
             ),
             child: PaginatedDataTable(
+              
               source: MyData(data, setState),
               header: Text(
                 'Recent Open Positions',

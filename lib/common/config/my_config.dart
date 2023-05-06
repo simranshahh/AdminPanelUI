@@ -9,6 +9,7 @@ class MyConfig {
   static const String allcustomer = "/api/admin/all-customers";
   static const String allbookings = "/api/admin/all-bookings";
   static const String allserviceprovider = "/api/admin/all-service-provider";
+  static const String verify = "/api/auth/verify";
 
   /// Dont change the code below
   MyConfig._();
